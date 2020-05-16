@@ -1,4 +1,4 @@
-extends "res://script/Movable.gd"
+extends KinematicBody2D
 
 const MOVEMENT_SPEED = 240;
 var move_angle = 0;
@@ -10,11 +10,6 @@ const hidden_material = preload("res://assets/hidden_material.tres");
 func _physics_process(delta):
 	if get_parent().mode == 1:
 		return;
-	
-	if linear_velocity.length_squared() < 0.1:
-		get_node("AnimatedSprite").animation = "idle";
-	else:
-		get_node("AnimatedSprite").animation = "run";
 	
 	# MOVE
 	if !get_parent().transition:
@@ -44,14 +39,33 @@ func _physics_process(delta):
 			dir += Vector2(1, 0);
 		
 		dir = dir.normalized();
-		linear_velocity = dir * MOVEMENT_SPEED;
-		if pulling != null:
-			linear_velocity /= 2;
-			pulling.velocity = linear_velocity;
-		
-		get_node("Camera2D").align();
+		if dir == Vector2.ZERO:
+			get_node("AnimatedSprite").animation = "idle";
+		else:
+			var factor = 1;
+			if pulling != null:
+				factor = 0.5;
+			
+			var anim = "idle";
+			
+			var velocity = move_and_slide(dir * MOVEMENT_SPEED * factor, Vector2.ZERO, false, 4, PI/4, false);
+			if velocity.length_squared() > 0:
+				anim = "run";
+			
+			for index in get_slide_count():
+				var collision = get_slide_collision(index);
+				if collision.collider is RigidBody2D:
+					var collider = collision.collider;
+					collider.velocity = dir * MOVEMENT_SPEED / 2;
+					anim = "run";
+			
+			get_node("AnimatedSprite").animation = anim;
+			
+			if pulling != null:
+				pulling.velocity = dir * MOVEMENT_SPEED / 2;
+			
+			get_node("Camera2D").align();
 	else:
-		linear_velocity = Vector2.ZERO;
 		get_node("AnimatedSprite").animation = "idle";
 	
 	# LOOK
@@ -61,11 +75,22 @@ func _physics_process(delta):
 	get_node("AnimatedSprite").flip_h = abs(angle) > PI / 2;
 
 # Movable
+
+var movement = [];
+var initial;
+
+func _ready():
+	get_owner().trackable.push_back(self);
+	initial = [is_flipped(), get_position()];
+	
 func is_flipped():
 	return get_node("AnimatedSprite").flip_h;
 
 func reset():
-	.reset();
+	if (get_owner().mode == 0):
+		movement = [];
+	rewind_position(initial[1], initial[0]);
+	
 	get_node("AnimatedSprite").animation = "idle";
 	get_node("Light").visible = get_owner().mode == 0;
 	if get_owner().mode == 0:
@@ -83,6 +108,9 @@ func rewind_position(vec, flip):
 	get_node("AnimatedSprite").flip_h = flip;
 	set_position(vec);
 	get_node("Camera2D").align();
+
+func record():
+	movement.push_back([is_flipped(), get_position()]);
 
 func rewind(frame):
 	if frame < movement.size():

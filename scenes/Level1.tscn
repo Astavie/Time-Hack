@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://script/Root.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Button.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/hidden_material.tres" type="Material" id=4]
 [ext_resource path="res://scenes/Global.tscn" type="PackedScene" id=5]
+[ext_resource path="res://script/Player.gd" type="Script" id=6]
 [ext_resource path="res://assets/background_material.tres" type="Material" id=7]
 [ext_resource path="res://scenes/Box.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=9]
@@ -140,11 +141,11 @@ texture = SubResource( 9 )
 position = Vector2( 0, 24 )
 shape = SubResource( 10 )
 
-[node name="Player" parent="." instance=ExtResource( 9 )]
-use_parent_material = false
+[node name="Player" type="KinematicBody2D" parent="." instance=ExtResource( 9 )]
 position = Vector2( 660, 216 )
 collision_layer = 7
 collision_mask = 7
+script = ExtResource( 6 )
 
 [node name="CCTV" parent="." instance=ExtResource( 10 )]
 position = Vector2( 24, 456 )
