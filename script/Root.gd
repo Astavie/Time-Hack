@@ -14,7 +14,8 @@ var hidden_material;
 var next_mode = -1;
 var frame = 0;
 
-export var level = 0;
+export var tutorial = false;
+export(PackedScene) var nextLevel;
 
 func _ready():
 	init_material = material;
@@ -31,6 +32,16 @@ func lose():
 	transition = true;
 	get_node("Global/Alarm").play();
 	lose_time = 1;
+
+func die():
+	if lose_time > 0:
+		return;
+	
+	transition = true;
+	if mode == 0:
+		get_node("Global/DiePlayer/Node2D").visible = true;
+	else:
+		get_node("Global/DieCEO/Node2D").visible = true;
 
 func laptop():
 	if lose_time > 0:

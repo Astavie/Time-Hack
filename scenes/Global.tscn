@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://script/ButtonRetryHacker.gd" type="Script" id=1]
 [ext_resource path="res://sfx/hack.wav" type="AudioStream" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://sfx/siren.wav" type="AudioStream" id=4]
 [ext_resource path="res://sfx/win.wav" type="AudioStream" id=5]
 [ext_resource path="res://script/ButtonRetryCEO.gd" type="Script" id=6]
+[ext_resource path="res://script/ButtonContinue.gd" type="Script" id=7]
 
 [node name="Global" type="Node2D"]
 
@@ -50,6 +51,32 @@ rect_scale = Vector2( 2, 2 )
 text = "You got caught!"
 align = 1
 
+[node name="DiePlayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" type="Node2D" parent="DiePlayer"]
+visible = false
+
+[node name="Button" type="Button" parent="DiePlayer/Node2D"]
+margin_left = 400.5
+margin_top = 432.0
+margin_right = 511.5
+margin_bottom = 452.0
+rect_scale = Vector2( 2, 2 )
+text = "Retry"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="DiePlayer/Node2D"]
+margin_left = 348.0
+margin_top = 360.0
+margin_right = 511.0
+margin_bottom = 374.0
+rect_scale = Vector2( 2, 2 )
+text = "You died!"
+align = 1
+
 [node name="WinCEO" type="CanvasLayer" parent="."]
 
 [node name="Node2D" type="Node2D" parent="WinCEO"]
@@ -62,6 +89,7 @@ margin_right = 511.5
 margin_bottom = 452.0
 rect_scale = Vector2( 2, 2 )
 text = "Continue"
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -154,6 +182,47 @@ margin_bottom = 452.0
 rect_scale = Vector2( 2, 2 )
 text = "Retry as CEO"
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DieCEO" type="CanvasLayer" parent="."]
+
+[node name="Node2D" type="Node2D" parent="DieCEO"]
+visible = false
+
+[node name="Hacker" type="Button" parent="DieCEO/Node2D"]
+margin_left = 264.0
+margin_top = 432.0
+margin_right = 375.0
+margin_bottom = 452.0
+rect_scale = Vector2( 2, 2 )
+text = "Retry as Hacker"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CEO" type="Button" parent="DieCEO/Node2D"]
+margin_left = 540.0
+margin_top = 432.0
+margin_right = 651.0
+margin_bottom = 452.0
+rect_scale = Vector2( 2, 2 )
+text = "Retry as CEO"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="DieCEO/Node2D"]
+margin_left = 288.0
+margin_top = 360.0
+margin_right = 525.0
+margin_bottom = 374.0
+rect_scale = Vector2( 2, 2 )
+text = "You killed your past self..."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

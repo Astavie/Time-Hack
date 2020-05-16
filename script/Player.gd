@@ -12,7 +12,7 @@ func _physics_process(delta):
 		return;
 	
 	# MOVE
-	if !get_parent().transition:
+	if !get_parent().transition && !falling:
 		var pulling = null;
 		if (Input.is_action_pressed("pull")):
 			pulling = get_node("Down").get_collider();
@@ -79,6 +79,18 @@ func _physics_process(delta):
 var movement = [];
 var initial;
 
+var falling = false;
+
+func _process(delta):
+	if falling:
+		rotation += PI * delta;
+		scale /= 1.05;
+
+func fall():
+	falling = true;
+	get_node("Light").visible = false;
+	get_owner().die();
+
 func _ready():
 	get_owner().trackable.push_back(self);
 	initial = [is_flipped(), get_position()];
@@ -87,6 +99,10 @@ func is_flipped():
 	return get_node("AnimatedSprite").flip_h;
 
 func reset():
+	falling = false;
+	rotation = 0;
+	scale = Vector2(1, 1);
+	
 	if (get_owner().mode == 0):
 		movement = [];
 	rewind_position(initial[1], initial[0]);

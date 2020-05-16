@@ -1,19 +1,20 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://script/Root.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Button.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/hidden_material.tres" type="Material" id=4]
 [ext_resource path="res://scenes/Global.tscn" type="PackedScene" id=5]
-[ext_resource path="res://script/Player.gd" type="Script" id=6]
+[ext_resource path="res://scenes/Level2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/background_material.tres" type="Material" id=7]
 [ext_resource path="res://scenes/Box.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/CCTV.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/player.png" type="Texture" id=11]
 [ext_resource path="res://scenes/Window.tscn" type="PackedScene" id=12]
-[ext_resource path="res://script/Door.gd" type="Script" id=13]
-[ext_resource path="res://script/CEO.gd" type="Script" id=16]
+[ext_resource path="res://scenes/Door.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/CEO.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/Computer.tscn" type="PackedScene" id=15]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 11 )
@@ -27,44 +28,11 @@ region = Rect2( 144, 144, 48, 48 )
 atlas = ExtResource( 11 )
 region = Rect2( 192, 144, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 11 )
-region = Rect2( 120, 96, 24, 48 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 11 )
-region = Rect2( 144, 96, 24, 48 )
-
-[sub_resource type="SpriteFrames" id=6]
-animations = [ {
-"frames": [ SubResource( 4 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 5 ) ],
-"loop": true,
-"name": "open",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 4, 48 )
-
-[sub_resource type="OccluderPolygon2D" id=8]
-polygon = PoolVector2Array( -4, 48, -4, -30, 4, -30, 4, 48 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 11 )
-region = Rect2( 120, 48, 24, 48 )
-
-[sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 24, 24 )
-
 [node name="Level1" type="Node2D"]
 material = ExtResource( 7 )
 script = ExtResource( 2 )
-level = 1
+tutorial = true
+nextLevel = ExtResource( 6 )
 
 [node name="Global" parent="." instance=ExtResource( 5 )]
 
@@ -112,40 +80,14 @@ texture = SubResource( 3 )
 [node name="Box" parent="hidden" instance=ExtResource( 8 )]
 position = Vector2( 216, 168 )
 
-[node name="Door" type="StaticBody2D" parent="."]
-position = Vector2( 144, 240 )
-script = ExtResource( 13 )
+[node name="Door" parent="." instance=ExtResource( 13 )]
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Door"]
-scale = Vector2( 2, 2 )
-frames = SubResource( 6 )
+[node name="Computer" parent="." instance=ExtResource( 15 )]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
-shape = SubResource( 7 )
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Door"]
-occluder = SubResource( 8 )
-
-[node name="Computer" type="StaticBody2D" parent="."]
-use_parent_material = true
-position = Vector2( 264, 480 )
-collision_layer = 6
-collision_mask = 6
-
-[node name="Sprite" type="Sprite" parent="Computer"]
-use_parent_material = true
-scale = Vector2( 2, 2 )
-texture = SubResource( 9 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Computer"]
-position = Vector2( 0, 24 )
-shape = SubResource( 10 )
-
-[node name="Player" type="KinematicBody2D" parent="." instance=ExtResource( 9 )]
+[node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( 660, 216 )
 collision_layer = 7
 collision_mask = 7
-script = ExtResource( 6 )
 
 [node name="CCTV" parent="." instance=ExtResource( 10 )]
 position = Vector2( 24, 456 )
@@ -157,5 +99,4 @@ position = Vector2( 144, 432 )
 collision_layer = 4
 collision_mask = 4
 
-[node name="CEO" type="Camera2D" parent="."]
-script = ExtResource( 16 )
+[node name="CEO" parent="." instance=ExtResource( 14 )]

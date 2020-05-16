@@ -1,0 +1,138 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://script/Root.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/hidden_material.tres" type="Material" id=4]
+[ext_resource path="res://scenes/Global.tscn" type="PackedScene" id=5]
+[ext_resource path="res://script/Grate.gd" type="Script" id=6]
+[ext_resource path="res://assets/background_material.tres" type="Material" id=7]
+[ext_resource path="res://scenes/Box.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/CCTV.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/player.png" type="Texture" id=11]
+[ext_resource path="res://scenes/Window.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Door.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/CEO.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/Computer.tscn" type="PackedScene" id=15]
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 11 )
+region = Rect2( 144, 48, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 11 )
+region = Rect2( 192, 48, 48, 48 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 5 ) ],
+"loop": true,
+"name": "open",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 48, 48 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 11 )
+region = Rect2( 96, 144, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 11 )
+region = Rect2( 144, 144, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 11 )
+region = Rect2( 192, 144, 48, 48 )
+
+[node name="Level2" type="Node2D"]
+material = ExtResource( 7 )
+script = ExtResource( 2 )
+
+[node name="Global" parent="." instance=ExtResource( 5 )]
+
+[node name="Floor" type="TileMap" parent="."]
+light_mask = 5
+use_parent_material = true
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 24, 24 )
+occluder_light_mask = 3
+format = 1
+tile_data = PoolIntArray( 196622, 0, 0, 196623, 0, 1, 196624, 0, 1, 196625, 0, 0, 196626, 0, 65537, 196627, 0, 65537, 196628, 0, 65537, 196629, 0, 0, 196630, 0, 65536, 196631, 0, 65537, 196632, 0, 0, 262158, 0, 1, 262159, 0, 0, 262160, 0, 0, 262161, 0, 0, 262162, 0, 0, 262163, 0, 65537, 262164, 0, 65537, 262165, 0, 1, 262166, 0, 65536, 262167, 0, 1, 262168, 0, 0, 327694, 0, 0, 327695, 0, 1, 327696, 0, 1, 327697, 0, 0, 327698, 0, 1, 327699, 0, 0, 327700, 0, 0, 327701, 0, 0, 327702, 0, 0, 327703, 0, 0, 327704, 0, 0, 393230, 0, 0, 393236, 0, 1, 393237, 0, 0, 393238, 0, 0, 393239, 0, 0, 393240, 0, 65536, 458764, 0, 65537, 458772, 0, 0, 458773, 0, 65536, 458774, 0, 0, 458775, 0, 0, 458776, 0, 0, 458779, 0, 1, 458780, 0, 65537, 458781, 0, 0, 524308, 0, 65537, 524311, 0, 0, 524312, 0, 65537, 524313, 0, 65537, 524314, 0, 65536, 524315, 0, 1, 524316, 0, 65536, 524317, 0, 65536, 589844, 0, 0, 589847, 0, 0, 589848, 0, 65537, 589851, 0, 1, 589852, 0, 0, 589853, 0, 0, 655380, 0, 65537, 655381, 0, 65536, 655382, 0, 0, 655383, 0, 65537, 655384, 0, 65537, 720916, 0, 1, 720917, 0, 0, 720918, 0, 0, 720919, 0, 0, 720920, 0, 0, 786452, 0, 65537, 786453, 0, 1, 786454, 0, 0, 786455, 0, 65537, 786456, 0, 0, 786459, 0, 1, 786460, 0, 65537, 786461, 0, 1, 851988, 0, 65537, 851989, 0, 0, 851990, 0, 0, 851991, 0, 65537, 851992, 0, 65536, 851993, 0, 65536, 851994, 0, 65536, 851995, 0, 65537, 851996, 0, 65536, 851997, 0, 0, 917524, 0, 0, 917525, 0, 0, 917526, 0, 65536, 917527, 0, 65537, 917528, 0, 0, 917531, 0, 0, 917532, 0, 0, 917533, 0, 1, 983060, 0, 0, 983061, 0, 65536, 983062, 0, 1, 983063, 0, 0, 983064, 0, 0, 1048596, 0, 0, 1048597, 0, 0, 1048598, 0, 1, 1048599, 0, 0, 1048600, 0, 1 )
+
+[node name="Grate" type="Area2D" parent="."]
+use_parent_material = true
+position = Vector2( 1056, 432 )
+script = ExtResource( 6 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Grate"]
+light_mask = 5
+use_parent_material = true
+scale = Vector2( 2, 2 )
+frames = SubResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grate"]
+shape = SubResource( 7 )
+
+[node name="Walls" type="TileMap" parent="."]
+light_mask = 0
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 24, 24 )
+occluder_light_mask = 7
+format = 1
+tile_data = PoolIntArray( 65548, 1, 0, 65549, 1, 1, 65550, 1, 1, 65551, 1, 1, 65552, 1, 1, 65553, 1, 1, 65554, 1, 1, 65555, 1, 1, 65556, 1, 1, 65557, 1, 1, 65558, 1, 1, 65559, 1, 1, 65560, 1, 1, 65561, 1, 1, 65562, 1, 2, 131084, 1, 65536, 131085, 1, 65540, 131086, 1, 131073, 131087, 1, 131073, 131088, 1, 131073, 131089, 1, 131073, 131090, 1, 131073, 131091, 1, 131073, 131092, 1, 131073, 131093, 1, 131073, 131094, 1, 131073, 131095, 1, 131073, 131096, 1, 131073, 131097, 1, 65539, 131098, 1, 65538, 196620, 1, 65536, 196621, 1, 65538, 196633, 1, 65536, 196634, 1, 65538, 262156, 1, 65536, 262157, 1, 65538, 262169, 1, 65536, 262170, 1, 65538, 327692, 1, 65536, 327693, 1, 65538, 327705, 1, 65536, 327706, 1, 4, 327707, 1, 1, 327708, 1, 1, 327709, 1, 1, 327710, 1, 1, 327711, 1, 2, 393228, 1, 65536, 393229, 1, 4, 393230, 1, 1, 393231, 1, 1, 393232, 1, 1, 393233, 1, 1, 393234, 1, 1, 393235, 1, 2, 393241, 1, 65536, 393242, 1, 65540, 393243, 1, 131073, 393244, 1, 131073, 393245, 1, 131073, 393246, 1, 65539, 393247, 1, 65538, 458764, 1, 131072, 458765, 1, 131073, 458766, 1, 131073, 458767, 1, 131073, 458768, 1, 131073, 458769, 1, 131073, 458770, 1, 65539, 458771, 1, 65538, 458777, 1, 131072, 458778, 1, 131074, 458782, 1, 65536, 458783, 1, 65538, 524306, 1, 65536, 524307, 1, 65538, 524318, 1, 65536, 524319, 1, 65538, 589842, 1, 65536, 589843, 1, 65538, 589849, 1, 0, 589850, 1, 2, 589854, 1, 65536, 589855, 1, 65538, 655378, 1, 65536, 655379, 1, 65538, 655385, 1, 65536, 655386, 1, 4, 655387, 1, 1, 655388, 1, 1, 655389, 1, 1, 655390, 1, 3, 655391, 1, 65538, 720914, 1, 65536, 720915, 1, 65538, 720921, 1, 65536, 720922, 1, 65540, 720923, 1, 131073, 720924, 1, 131073, 720925, 1, 131073, 720926, 1, 65539, 720927, 1, 65538, 786450, 1, 65536, 786451, 1, 65538, 786457, 1, 131072, 786458, 1, 131074, 786462, 1, 65536, 786463, 1, 65538, 851986, 1, 65536, 851987, 1, 65538, 851998, 1, 65536, 851999, 1, 65538, 917522, 1, 65536, 917523, 1, 65538, 917529, 1, 0, 917530, 1, 2, 917534, 1, 65536, 917535, 1, 65538, 983058, 1, 65536, 983059, 1, 65538, 983065, 1, 65536, 983066, 1, 4, 983067, 1, 1, 983068, 1, 1, 983069, 1, 1, 983070, 1, 3, 983071, 1, 65538, 1048594, 1, 65536, 1048595, 1, 65538, 1048601, 1, 65536, 1048602, 1, 65540, 1048603, 1, 131073, 1048604, 1, 131073, 1048605, 1, 131073, 1048606, 1, 131073, 1048607, 1, 131074, 1114130, 1, 65536, 1114131, 1, 4, 1114132, 1, 1, 1114133, 1, 1, 1114134, 1, 1, 1114135, 1, 1, 1114136, 1, 1, 1114137, 1, 3, 1114138, 1, 65538, 1179666, 1, 131072, 1179667, 1, 131073, 1179668, 1, 131073, 1179669, 1, 131073, 1179670, 1, 131073, 1179671, 1, 131073, 1179672, 1, 131073, 1179673, 1, 131073, 1179674, 1, 131074 )
+
+[node name="Button" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1080, 744 )
+door = NodePath("../../Level2/Door")
+
+[node name="hidden" type="Node2D" parent="."]
+material = ExtResource( 4 )
+
+[node name="Pull" type="Sprite" parent="hidden"]
+use_parent_material = true
+position = Vector2( 264, 168 )
+texture = SubResource( 1 )
+
+[node name="Hack" type="Sprite" parent="hidden"]
+use_parent_material = true
+position = Vector2( 24, 408 )
+texture = SubResource( 2 )
+
+[node name="Crack" type="Sprite" parent="hidden"]
+use_parent_material = true
+position = Vector2( 312, 504 )
+texture = SubResource( 3 )
+
+[node name="Box" parent="hidden" instance=ExtResource( 8 )]
+position = Vector2( 1080, 216 )
+
+[node name="Door" parent="." instance=ExtResource( 13 )]
+position = Vector2( 1248, 624 )
+
+[node name="Computer" parent="." instance=ExtResource( 15 )]
+position = Vector2( 1368, 624 )
+
+[node name="Player" parent="." instance=ExtResource( 9 )]
+position = Vector2( 744, 216 )
+collision_layer = 7
+collision_mask = 7
+
+[node name="CCTV" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1416, 408 )
+
+[node name="Window" parent="." instance=ExtResource( 12 )]
+position = Vector2( 1248, 384 )
+collision_layer = 4
+collision_mask = 4
+
+[node name="CEO" parent="." instance=ExtResource( 14 )]
