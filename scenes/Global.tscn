@@ -1,0 +1,159 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://script/ButtonRetryHacker.gd" type="Script" id=1]
+[ext_resource path="res://sfx/hack.wav" type="AudioStream" id=2]
+[ext_resource path="res://sfx/switch.wav" type="AudioStream" id=3]
+[ext_resource path="res://sfx/siren.wav" type="AudioStream" id=4]
+[ext_resource path="res://sfx/win.wav" type="AudioStream" id=5]
+[ext_resource path="res://script/ButtonRetryCEO.gd" type="Script" id=6]
+
+[node name="Global" type="Node2D"]
+
+[node name="Alarm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -25.0
+
+[node name="Light" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -5.0
+
+[node name="Hack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -10.0
+
+[node name="Win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="LosePlayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" type="Node2D" parent="LosePlayer"]
+visible = false
+
+[node name="Button" type="Button" parent="LosePlayer/Node2D"]
+margin_left = 400.5
+margin_top = 432.0
+margin_right = 511.5
+margin_bottom = 452.0
+rect_scale = Vector2( 2, 2 )
+text = "Retry"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LosePlayer/Node2D"]
+margin_left = 348.0
+margin_top = 360.0
+margin_right = 511.0
+margin_bottom = 374.0
+rect_scale = Vector2( 2, 2 )
+text = "You got caught!"
+align = 1
+
+[node name="WinCEO" type="CanvasLayer" parent="."]
+
+[node name="Node2D" type="Node2D" parent="WinCEO"]
+visible = false
+
+[node name="Button" type="Button" parent="WinCEO/Node2D"]
+margin_left = 400.5
+margin_top = 432.0
+margin_right = 511.5
+margin_bottom = 452.0
+rect_scale = Vector2( 2, 2 )
+text = "Continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="WinCEO/Node2D"]
+margin_left = 348.0
+margin_top = 360.0
+margin_right = 511.0
+margin_bottom = 374.0
+rect_scale = Vector2( 2, 2 )
+text = "You caught your past self!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WinPlayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" type="Node2D" parent="WinPlayer"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="WinPlayer/Node2D"]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 0.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="WinPlayer/Node2D/ColorRect"]
+margin_left = 312.0
+margin_top = 360.0
+margin_right = 523.0
+margin_bottom = 374.0
+rect_scale = Vector2( 2, 2 )
+text = "You cracked the CEO's computer!"
+
+[node name="Button" type="Button" parent="WinPlayer/Node2D"]
+margin_left = 400.5
+margin_top = 432.0
+margin_right = 511.5
+margin_bottom = 452.0
+rect_scale = Vector2( 2, 2 )
+text = "Continue"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoseCEO" type="CanvasLayer" parent="."]
+
+[node name="Node2D" type="Node2D" parent="LoseCEO"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="LoseCEO/Node2D"]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 0.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LoseCEO/Node2D/ColorRect"]
+margin_left = 288.0
+margin_top = 360.0
+margin_right = 525.0
+margin_bottom = 374.0
+rect_scale = Vector2( 2, 2 )
+text = "Your past self got to your computer..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hacker" type="Button" parent="LoseCEO/Node2D"]
+margin_left = 264.0
+margin_top = 432.0
+margin_right = 375.0
+margin_bottom = 452.0
+rect_scale = Vector2( 2, 2 )
+text = "Retry as Hacker"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CEO" type="Button" parent="LoseCEO/Node2D"]
+margin_left = 540.0
+margin_top = 432.0
+margin_right = 651.0
+margin_bottom = 452.0
+rect_scale = Vector2( 2, 2 )
+text = "Retry as CEO"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
