@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://script/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Light.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sfx/step.wav" type="AudioStream" id=4]
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 24, 24, 24 )
 
@@ -24,9 +25,9 @@ region = Rect2( 72, 24, 24, 24 )
 atlas = ExtResource( 2 )
 region = Rect2( 0, 24, 24, 24 )
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 1 ) ],
+"frames": [ SubResource( 6 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
@@ -37,7 +38,7 @@ animations = [ {
 "speed": 8.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 12, 12 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -51,9 +52,9 @@ light_mask = 5
 use_parent_material = true
 position = Vector2( 0, -12 )
 scale = Vector2( 2, 2 )
-frames = SubResource( 6 )
+frames = SubResource( 7 )
 animation = "run"
-frame = 2
+frame = 1
 playing = true
 
 [node name="Light" parent="." instance=ExtResource( 3 )]
@@ -66,7 +67,7 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="Down" type="RayCast2D" parent="."]
 enabled = true
@@ -87,3 +88,7 @@ collision_mask = 2
 enabled = true
 cast_to = Vector2( 20, 0 )
 collision_mask = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -20.0

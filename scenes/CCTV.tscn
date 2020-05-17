@@ -65,3 +65,36 @@ __meta__ = {
 [node name="Beep" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -15.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -50.0
+margin_top = -70.0
+margin_right = 50.0
+margin_bottom = -30.0
+rect_pivot_offset = Vector2( 50, 40 )
+color = Color( 0.1, 0.1, 0.1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="ColorRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -62.859
+margin_top = 1.38695
+margin_right = 20.141
+margin_bottom = 32.3869
+rect_scale = Vector2( 1.5, 1.5 )
+text = "Camera
+"
+align = 1
+
+[node name="Descr" type="Label" parent="ColorRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -42.0548
+margin_top = 22.7459
+margin_right = 40.9452
+margin_bottom = 36.7459
+text = "Disable"
+align = 1

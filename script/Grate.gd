@@ -39,6 +39,12 @@ func is_in_range(mouse):
 	var result = space_state.intersect_ray(player.get_global_position(), mouse, [player, self], collision_mask);
 	return !result;
 
+
+func _process(delta):
+	var area_extents = self.get_node("CollisionShape2D").shape.extents;
+	var area_rect = Rect2(self.global_position - area_extents, area_extents * 2);
+	get_node("ColorRect").visible = area_rect.has_point(get_global_mouse_position());
+
 # Hackable
 
 var prev = false;
@@ -70,6 +76,7 @@ func hack():
 		get_owner().play_hack();
 	
 	get_node("AnimatedSprite").animation = "open";
+	get_node("ColorRect/Desc").text = "Replace";
 	open = true;
 
 func unhack():
@@ -77,6 +84,7 @@ func unhack():
 		get_owner().play_hack();
 	
 	get_node("AnimatedSprite").animation = "default";
+	get_node("ColorRect/Desc").text = "Remove";
 	open = false;
 
 func is_hacked():

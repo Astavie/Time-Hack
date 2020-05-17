@@ -1,11 +1,11 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://script/Root.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Button.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/hidden_material.tres" type="Material" id=4]
 [ext_resource path="res://scenes/Global.tscn" type="PackedScene" id=5]
-[ext_resource path="res://script/Grate.gd" type="Script" id=6]
+[ext_resource path="res://scenes/Grate.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/background_material.tres" type="Material" id=7]
 [ext_resource path="res://scenes/Box.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=9]
@@ -15,30 +15,7 @@
 [ext_resource path="res://scenes/Door.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/CEO.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/Computer.tscn" type="PackedScene" id=15]
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 11 )
-region = Rect2( 144, 48, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 11 )
-region = Rect2( 192, 48, 48, 48 )
-
-[sub_resource type="SpriteFrames" id=6]
-animations = [ {
-"frames": [ SubResource( 4 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 5 ) ],
-"loop": true,
-"name": "open",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 48, 48 )
+[ext_resource path="res://scenes/Title2.tscn" type="PackedScene" id=16]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 11 )
@@ -55,6 +32,7 @@ region = Rect2( 192, 144, 48, 48 )
 [node name="Level2" type="Node2D"]
 material = ExtResource( 7 )
 script = ExtResource( 2 )
+nextLevel = ExtResource( 16 )
 
 [node name="Global" parent="." instance=ExtResource( 5 )]
 
@@ -68,19 +46,7 @@ occluder_light_mask = 3
 format = 1
 tile_data = PoolIntArray( 196622, 0, 0, 196623, 0, 1, 196624, 0, 1, 196625, 0, 0, 196626, 0, 65537, 196627, 0, 65537, 196628, 0, 65537, 196629, 0, 0, 196630, 0, 65536, 196631, 0, 65537, 196632, 0, 0, 262158, 0, 1, 262159, 0, 0, 262160, 0, 0, 262161, 0, 0, 262162, 0, 0, 262163, 0, 65537, 262164, 0, 65537, 262165, 0, 1, 262166, 0, 65536, 262167, 0, 1, 262168, 0, 0, 327694, 0, 0, 327695, 0, 1, 327696, 0, 1, 327697, 0, 0, 327698, 0, 1, 327699, 0, 0, 327700, 0, 0, 327701, 0, 0, 327702, 0, 0, 327703, 0, 0, 327704, 0, 0, 393230, 0, 0, 393236, 0, 1, 393237, 0, 0, 393238, 0, 0, 393239, 0, 0, 393240, 0, 65536, 458764, 0, 65537, 458772, 0, 0, 458773, 0, 65536, 458774, 0, 0, 458775, 0, 0, 458776, 0, 0, 458779, 0, 1, 458780, 0, 65537, 458781, 0, 0, 524308, 0, 65537, 524311, 0, 0, 524312, 0, 65537, 524313, 0, 65537, 524314, 0, 65536, 524315, 0, 1, 524316, 0, 65536, 524317, 0, 65536, 589844, 0, 0, 589847, 0, 0, 589848, 0, 65537, 589851, 0, 1, 589852, 0, 0, 589853, 0, 0, 655380, 0, 65537, 655381, 0, 65536, 655382, 0, 0, 655383, 0, 65537, 655384, 0, 65537, 720916, 0, 1, 720917, 0, 0, 720918, 0, 0, 720919, 0, 0, 720920, 0, 0, 786452, 0, 65537, 786453, 0, 1, 786454, 0, 0, 786455, 0, 65537, 786456, 0, 0, 786459, 0, 1, 786460, 0, 65537, 786461, 0, 1, 851988, 0, 65537, 851989, 0, 0, 851990, 0, 0, 851991, 0, 65537, 851992, 0, 65536, 851993, 0, 65536, 851994, 0, 65536, 851995, 0, 65537, 851996, 0, 65536, 851997, 0, 0, 917524, 0, 0, 917525, 0, 0, 917526, 0, 65536, 917527, 0, 65537, 917528, 0, 0, 917531, 0, 0, 917532, 0, 0, 917533, 0, 1, 983060, 0, 0, 983061, 0, 65536, 983062, 0, 1, 983063, 0, 0, 983064, 0, 0, 1048596, 0, 0, 1048597, 0, 0, 1048598, 0, 1, 1048599, 0, 0, 1048600, 0, 1 )
 
-[node name="Grate" type="Area2D" parent="."]
-use_parent_material = true
-position = Vector2( 1056, 432 )
-script = ExtResource( 6 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Grate"]
-light_mask = 5
-use_parent_material = true
-scale = Vector2( 2, 2 )
-frames = SubResource( 6 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Grate"]
-shape = SubResource( 7 )
+[node name="Grate" parent="." instance=ExtResource( 6 )]
 
 [node name="Walls" type="TileMap" parent="."]
 light_mask = 0

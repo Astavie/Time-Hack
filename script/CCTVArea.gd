@@ -17,6 +17,10 @@ static func normalize_angle(x):
 	return fposmod(x + PI, 2.0*PI) - PI
 
 func _ready():
+	get_node("ColorRect").rect_scale = Vector2(1 / scale.x, 1 / scale.y);
+	get_node("ColorRect").rect_rotation = -rotation_degrees
+	get_node("ColorRect").visible = false;
+	
 	get_owner().trackable.push_back(self);
 	get_owner().lights.push_back(get_node("Light2D"));
 
@@ -62,6 +66,10 @@ func _process(delta):
 		time -= delta;
 		if time <= 0:
 			get_owner().lose();
+	
+	var area_extents = self.get_node("CollisionShape2D").shape.extents;
+	var area_rect = Rect2(self.global_position - area_extents, area_extents * 2);
+	get_node("ColorRect").visible = area_rect.has_point(get_global_mouse_position());
 	
 	var angle = 0;
 	if !enabled:
@@ -113,6 +121,8 @@ func hack():
 	if get_owner().frame_one == 0:
 		get_owner().play_hack();
 	
+	get_node("ColorRect/Descr").text = "Enable";
+	
 	get_node("Light2D").visible = false;
 	get_node("Light").visible = false;
 	enabled = false;
@@ -120,6 +130,8 @@ func hack():
 func unhack():
 	if get_owner().frame_one == 0:
 		get_owner().play_hack();
+	
+	get_node("ColorRect/Descr").text = "Disable";
 	
 	enabled = true;
 

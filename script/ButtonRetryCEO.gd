@@ -6,5 +6,6 @@ func _pressed():
 		owner = get_owner();
 	
 	owner.play_mode(1);
+	
 	get_parent().visible = false;
 	pressed = false;

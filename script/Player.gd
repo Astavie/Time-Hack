@@ -76,6 +76,9 @@ func _physics_process(delta):
 
 # Movable
 
+var prev;
+var move = 0;
+
 var movement = [];
 var initial;
 
@@ -85,6 +88,13 @@ func _process(delta):
 	if falling:
 		rotation += PI * delta;
 		scale /= 1.05;
+	
+	move += (position - prev).length();
+	prev = position;
+	if move > 64:
+		move = 0;
+		if get_owner().frame_one == 0:
+			get_node("AudioStreamPlayer").play();
 
 func fall():
 	falling = true;
@@ -92,6 +102,7 @@ func fall():
 	get_owner().die();
 
 func _ready():
+	prev = position;
 	get_owner().trackable.push_back(self);
 	initial = [is_flipped(), get_position()];
 	

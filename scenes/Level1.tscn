@@ -69,7 +69,7 @@ texture = SubResource( 1 )
 
 [node name="Hack" type="Sprite" parent="hidden"]
 use_parent_material = true
-position = Vector2( 24, 408 )
+position = Vector2( 24, 504 )
 texture = SubResource( 2 )
 
 [node name="Crack" type="Sprite" parent="hidden"]
@@ -100,3 +100,69 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CEO" parent="." instance=ExtResource( 14 )]
+
+[node name="Tutorial" type="CanvasLayer" parent="."]
+
+[node name="Hacker" type="Node2D" parent="Tutorial"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/Hacker"]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 0.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tutorial/Hacker/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+rect_scale = Vector2( 2, 2 )
+text = "You are a hacker with the power to hack anything in your line of sight.
+You have infiltrated the building of an international tech company.
+Your goal is to find and crack the laptop of the CEO.
+Good luck!
+
+press <space> to continue"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CEO" type="Node2D" parent="Tutorial"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/CEO"]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 0.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tutorial/CEO/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+rect_scale = Vector2( 2, 2 )
+text = "Years later, you invent time travel and go back in time.
+With your knowledge from the future, you started a tech company.
+However, this is the exact same company you infiltrated in the past.
+Capture your past self before they crack your password!
+
+You can only see through CCTV Cameras, but you can hack anything.
+
+press <space> to continue"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
